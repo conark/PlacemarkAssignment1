@@ -30,12 +30,23 @@ class PlacemarkView : AppCompatActivity() {
         presenter = PlacemarkPresenter(this)
 
         binding.chooseImage.setOnClickListener {
-            presenter.cachePlacemark(binding.placemarkTitle.text.toString(), binding.description.text.toString())
+            presenter.cachePlacemark(
+                binding.placemarkTitle.text.toString(),
+                binding.description.text.toString(),
+                binding.providerType.text.toString(),
+                binding.providerPhone.text.toString(),
+                binding.providerAddress.text.toString()
+                )
             presenter.doSelectImage()
         }
 
         binding.placemarkLocation.setOnClickListener {
-            presenter.cachePlacemark(binding.placemarkTitle.text.toString(), binding.description.text.toString())
+            presenter.cachePlacemark(
+                binding.placemarkTitle.text.toString(),
+                binding.description.text.toString(),
+                binding.providerType.text.toString(),
+                binding.providerPhone.text.toString(),
+                binding.providerAddress.text.toString())
             presenter.doSetLocation()
         }
     }
@@ -55,7 +66,13 @@ class PlacemarkView : AppCompatActivity() {
                         .show()
                 } else {
                     // presenter.cachePlacemark(binding.placemarkTitle.text.toString(), binding.description.text.toString())
-                    presenter.doAddOrSave(binding.placemarkTitle.text.toString(), binding.description.text.toString())
+                    presenter.doAddOrSave(
+                        binding.placemarkTitle.text.toString(),
+                        binding.description.text.toString(),
+                        binding.providerType.text.toString(),
+                        binding.providerPhone.text.toString(),
+                        binding.providerAddress.text.toString(),
+                    )
                 }
             }
             R.id.item_delete -> {
@@ -71,6 +88,10 @@ class PlacemarkView : AppCompatActivity() {
     fun showPlacemark(placemark: PlacemarkModel) {
         binding.placemarkTitle.setText(placemark.title)
         binding.description.setText(placemark.description)
+        binding.providerType.setText(placemark.providerType)
+        binding.providerPhone.setText(placemark.providerPhone)
+        binding.providerAddress.setText(placemark.providerAddress)
+
         Picasso.get()
             .load(placemark.image)
             .into(binding.placemarkImage)

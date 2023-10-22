@@ -51,6 +51,9 @@ class PlacemarkJSONStore(private val context: Context) : PlacemarkStore {
         if (foundPlacemark != null) {
             foundPlacemark.title = placemark.title
             foundPlacemark.description = placemark.description
+            foundPlacemark.providerPhone = placemark.providerPhone
+            foundPlacemark.providerAddress = placemark.providerAddress
+            foundPlacemark.providerType = placemark.providerType
             foundPlacemark.image = placemark.image
             foundPlacemark.lat = placemark.lat
             foundPlacemark.lng = placemark.lng
