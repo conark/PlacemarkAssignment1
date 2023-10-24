@@ -32,12 +32,17 @@ class PlacemarkPresenter(private val view: PlacemarkView) {
         registerMapCallback()
     }
 
-    fun doAddOrSave(title: String, description: String, providerType: String, providerPhone:String,providerAddress:String) {
+    fun doAddOrSave(title: String, description: String, providerType: String,
+                    providerPhone:String,providerAddress:String, providerCity:String,
+                    providerCounty:String, providerPostcode:String) {
         placemark.title = title
         placemark.providerType = providerType
         placemark.description = description
         placemark.providerPhone = providerPhone
         placemark.providerAddress = providerAddress
+        placemark.providerCity = providerCity
+        placemark.providerCounty = providerCounty
+        placemark.providerPostcode = providerPostcode
         if (edit) {
             app.placemarks.update(placemark)
         } else {
@@ -73,12 +78,17 @@ class PlacemarkPresenter(private val view: PlacemarkView) {
         mapIntentLauncher.launch(launcherIntent)
     }
 
-    fun cachePlacemark (title: String, description: String,providerType: String, providerPhone:String,providerAddress:String) {
+    fun cachePlacemark (title: String, description: String,providerType: String,
+                        providerPhone:String,providerAddress:String, providerCity:String,
+                        providerCounty:String, providerPostcode:String) {
         placemark.title = title;
         placemark.providerType = providerType
         placemark.description = description
         placemark.providerPhone = providerPhone
         placemark.providerAddress = providerAddress
+        placemark.providerCity = providerCity
+        placemark.providerCounty = providerCounty
+        placemark.providerPostcode = providerPostcode
     }
 
     private fun registerImagePickerCallback() {

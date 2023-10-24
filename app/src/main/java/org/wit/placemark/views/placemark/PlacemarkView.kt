@@ -35,7 +35,11 @@ class PlacemarkView : AppCompatActivity() {
                 binding.description.text.toString(),
                 binding.providerType.text.toString(),
                 binding.providerPhone.text.toString(),
-                binding.providerAddress.text.toString()
+                binding.providerAddress.text.toString(),
+                binding.providerCity.text.toString(),
+                binding.providerCounty.text.toString(),
+                binding.providerPostcode.text.toString()
+
                 )
             presenter.doSelectImage()
         }
@@ -46,7 +50,10 @@ class PlacemarkView : AppCompatActivity() {
                 binding.description.text.toString(),
                 binding.providerType.text.toString(),
                 binding.providerPhone.text.toString(),
-                binding.providerAddress.text.toString())
+                binding.providerAddress.text.toString(),
+                binding.providerCity.text.toString(),
+                binding.providerCounty.text.toString(),
+                binding.providerPostcode.text.toString())
             presenter.doSetLocation()
         }
     }
@@ -72,6 +79,9 @@ class PlacemarkView : AppCompatActivity() {
                         binding.providerType.text.toString(),
                         binding.providerPhone.text.toString(),
                         binding.providerAddress.text.toString(),
+                        binding.providerCity.text.toString(),
+                        binding.providerCounty.text.toString(),
+                        binding.providerPostcode.text.toString()
                     )
                 }
             }
@@ -91,6 +101,9 @@ class PlacemarkView : AppCompatActivity() {
         binding.providerType.setText(placemark.providerType)
         binding.providerPhone.setText(placemark.providerPhone)
         binding.providerAddress.setText(placemark.providerAddress)
+        binding.providerCity.setText(placemark.providerCity)
+        binding.providerCounty.setText(placemark.providerCounty)
+        binding.providerPostcode.setText(placemark.providerPostcode)
 
         Picasso.get()
             .load(placemark.image)
