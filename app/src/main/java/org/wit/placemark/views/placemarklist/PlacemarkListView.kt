@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.wit.placemark.R
 import org.wit.placemark.adapters.PlacemarkAdapter
@@ -35,7 +36,28 @@ class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu)
+        val searchItem = menu.findItem(R.id.item_search)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrEmpty()) {
+                    presenter.searchPlacemarks(query)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (!newText.isNullOrEmpty()) {
+                    presenter.searchPlacemarks(newText)
+                } else {
+                    presenter.searchPlacemarks("")
+                }
+                return true
+            }
+        })
+
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -64,4 +86,13 @@ class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
     fun onDelete(position : Int) {
         binding.recyclerView.adapter?.notifyItemRemoved(position)
     }
+
+    fun showPlacemarks(placemarks: List<PlacemarkModel>) {
+        binding.recyclerView.adapter = PlacemarkAdapter(placemarks, this)
+        onRefresh()
+    }
+
+
+
+
 }

@@ -47,4 +47,10 @@ class PlacemarkMemStore : PlacemarkStore {
     override fun delete(placemark: PlacemarkModel) {
         placemarks.remove(placemark)
     }
+
+    override fun search(query: String): List<PlacemarkModel> {
+        return placemarks.filter {
+            it.title.contains(query, ignoreCase = true) || it.description.contains(query, ignoreCase = true)
+        }
+    }
 }

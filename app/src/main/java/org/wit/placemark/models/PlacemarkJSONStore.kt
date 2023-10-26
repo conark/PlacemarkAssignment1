@@ -83,6 +83,12 @@ class PlacemarkJSONStore(private val context: Context) : PlacemarkStore {
     private fun logAll() {
         placemarks.forEach { Timber.i("$it") }
     }
+
+    override fun search(query: String): List<PlacemarkModel> {
+        return placemarks.filter {
+            it.title.contains(query, ignoreCase = true) || it.description.contains(query, ignoreCase = true)
+        }
+    }
 }
 
 class UriParser : JsonDeserializer<Uri>,JsonSerializer<Uri> {

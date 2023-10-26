@@ -41,6 +41,11 @@ class PlacemarkListPresenter(val view: PlacemarkListView) {
         mapIntentLauncher.launch(launcherIntent)
     }
 
+    fun searchPlacemarks(query: String) {
+        val results = app.placemarks.search(query)
+        view.showPlacemarks(results)
+    }
+
     private fun registerRefreshCallback() {
         refreshIntentLauncher =
             view.registerForActivityResult(

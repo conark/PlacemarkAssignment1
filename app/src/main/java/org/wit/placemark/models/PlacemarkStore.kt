@@ -6,4 +6,6 @@ interface PlacemarkStore {
     fun create(placemark: PlacemarkModel)
     fun update(placemark: PlacemarkModel)
     fun delete(placemark: PlacemarkModel)
+    fun search(query: String): List<PlacemarkModel>
+
 }
