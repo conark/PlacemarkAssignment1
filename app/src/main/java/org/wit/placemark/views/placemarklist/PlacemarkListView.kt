@@ -25,7 +25,7 @@ class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
     private lateinit var binding: ActivityPlacemarkListBinding
     lateinit var presenter: PlacemarkListPresenter
     private var position: Int = 0
-  //  private val providerTypes = arrayOf("GP", "Consultant", "Scan center") // プロバイダータイプのリスト
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,33 +64,7 @@ class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
                 return true
             }
         })
-//        // スピナーの宣言と初期化
-//        val providerTypeSpinnerItem = menu.findItem(R.id.providerTypeSpinner)
-//        if (providerTypeSpinnerItem != null) {
-//            val spinner = providerTypeSpinnerItem.actionView as Spinner
-//
-//            // プロバイダータイプの選択肢を設定
-//
-//            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, providerTypes)
-//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//            spinner.adapter = adapter
-//
-//            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                    // 選択されたプロバイダータイプに基づいてフィルタリングを実行
-//                    val selectedProviderType = when (position) {
-//                        1 -> ProviderType.Consultant
-//                        2 -> ProviderType.ScanCenter
-//                        else -> ProviderType.GP
-//                    }
-//                    presenter.filterPlacemarksByProviderType(selectedProviderType)
-//                }
-//                override fun onNothingSelected(parent: AdapterView<*>?) {
-//                    // 何も選択されていない場合、デフォルトのプロバイダータイプを選択
-//                    presenter.filterPlacemarksByProviderType(ProviderType.GP)
-//                }
-//            }
-//        }
+
 
 
         return true

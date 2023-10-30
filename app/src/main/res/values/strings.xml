@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Find Medical Provider</string>
+    <string name="app_name">Find Doctor</string>
     <string name="button_addPlacemark">Add Place</string>
     <string name="hint_placemarkTitle">Name of Medical Provider</string>
     <string name="hint_placemarkDescription">Description </string>
