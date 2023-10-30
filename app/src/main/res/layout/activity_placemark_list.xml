@@ -23,12 +23,12 @@
         </androidx.appcompat.widget.Toolbar>
 
 
-<!--            <androidx.appcompat.widget.SearchView-->
-<!--                android:id="@+id/searchView"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:iconifiedByDefault="false"-->
-<!--                app:queryHint="Search" />-->
+<!--        <Spinner-->
+<!--            android:id="@+id/providerTypeSpinner"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="@string/provider_type"-->
+<!--            android:minHeight="48dp" />-->
 
 
     </com.google.android.material.appbar.AppBarLayout>

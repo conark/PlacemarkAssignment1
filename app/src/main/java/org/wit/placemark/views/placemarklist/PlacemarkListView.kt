@@ -3,6 +3,10 @@ package org.wit.placemark.views.placemarklist
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +16,8 @@ import org.wit.placemark.adapters.PlacemarkListener
 import org.wit.placemark.databinding.ActivityPlacemarkListBinding
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.PlacemarkModel
+//import org.wit.placemark.models.ProviderType
+
 
 class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
 
@@ -19,6 +25,7 @@ class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
     private lateinit var binding: ActivityPlacemarkListBinding
     lateinit var presenter: PlacemarkListPresenter
     private var position: Int = 0
+  //  private val providerTypes = arrayOf("GP", "Consultant", "Scan center") // プロバイダータイプのリスト
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +40,7 @@ class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
         binding.recyclerView.layoutManager = layoutManager
         loadPlacemarks()
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -56,6 +64,34 @@ class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
                 return true
             }
         })
+//        // スピナーの宣言と初期化
+//        val providerTypeSpinnerItem = menu.findItem(R.id.providerTypeSpinner)
+//        if (providerTypeSpinnerItem != null) {
+//            val spinner = providerTypeSpinnerItem.actionView as Spinner
+//
+//            // プロバイダータイプの選択肢を設定
+//
+//            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, providerTypes)
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            spinner.adapter = adapter
+//
+//            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                    // 選択されたプロバイダータイプに基づいてフィルタリングを実行
+//                    val selectedProviderType = when (position) {
+//                        1 -> ProviderType.Consultant
+//                        2 -> ProviderType.ScanCenter
+//                        else -> ProviderType.GP
+//                    }
+//                    presenter.filterPlacemarksByProviderType(selectedProviderType)
+//                }
+//                override fun onNothingSelected(parent: AdapterView<*>?) {
+//                    // 何も選択されていない場合、デフォルトのプロバイダータイプを選択
+//                    presenter.filterPlacemarksByProviderType(ProviderType.GP)
+//                }
+//            }
+//        }
+
 
         return true
     }
@@ -77,6 +113,7 @@ class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
         binding.recyclerView.adapter = PlacemarkAdapter(presenter.getPlacemarks(), this)
         onRefresh()
     }
+
 
     fun onRefresh() {
         binding.recyclerView.adapter?.

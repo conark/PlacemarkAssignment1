@@ -4,6 +4,12 @@ import android.net.Uri
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
+//enum class ProviderTypeDropDown {
+//    GP,
+//    ScanCenter,
+//    Consultant
+//}
+
 @Parcelize
 data class PlacemarkModel(var id: Long = 0,
                           var title: String = "",

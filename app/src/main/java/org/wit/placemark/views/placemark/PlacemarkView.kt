@@ -18,6 +18,15 @@ class PlacemarkView : AppCompatActivity() {
     private lateinit var presenter: PlacemarkPresenter
     var placemark = PlacemarkModel()
 
+//    fun getProviderTypeFromText(text: String): ProviderType {
+//        return when (text) {
+//            "GP" -> ProviderType.GP
+//            "Consultant" -> ProviderType.Consultant
+//            "Scan center" -> ProviderType.ScanCenter
+//            else -> ProviderType.GP // デフォルト値
+//        }
+ //   }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,6 +42,7 @@ class PlacemarkView : AppCompatActivity() {
             presenter.cachePlacemark(
                 binding.placemarkTitle.text.toString(),
                 binding.description.text.toString(),
+ //               getProviderTypeFromText(binding.providerType.text.toString()),
                 binding.providerType.text.toString(),
                 binding.providerPhone.text.toString(),
                 binding.providerAddress.text.toString(),
@@ -48,6 +58,7 @@ class PlacemarkView : AppCompatActivity() {
             presenter.cachePlacemark(
                 binding.placemarkTitle.text.toString(),
                 binding.description.text.toString(),
+//                getProviderTypeFromText(binding.providerType.text.toString()),
                 binding.providerType.text.toString(),
                 binding.providerPhone.text.toString(),
                 binding.providerAddress.text.toString(),
@@ -76,6 +87,7 @@ class PlacemarkView : AppCompatActivity() {
                     presenter.doAddOrSave(
                         binding.placemarkTitle.text.toString(),
                         binding.description.text.toString(),
+//                        getProviderTypeFromText(binding.providerType.text.toString()),
                         binding.providerType.text.toString(),
                         binding.providerPhone.text.toString(),
                         binding.providerAddress.text.toString(),

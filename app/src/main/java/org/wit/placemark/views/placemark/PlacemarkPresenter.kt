@@ -9,6 +9,7 @@ import org.wit.placemark.databinding.ActivityPlacemarkBinding
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.Location
 import org.wit.placemark.models.PlacemarkModel
+//import org.wit.placemark.models.ProviderType
 import org.wit.placemark.showImagePicker
 import org.wit.placemark.views.editlocation.EditLocationView
 import timber.log.Timber
@@ -31,7 +32,14 @@ class PlacemarkPresenter(private val view: PlacemarkView) {
         registerImagePickerCallback()
         registerMapCallback()
     }
-
+//    private fun getProviderTypeFromText(text: String): ProviderType {
+//        return when (text) {
+//            "GP" -> ProviderType.GP
+//            "Consultant" -> ProviderType.Consultant
+//            "Scan center" -> ProviderType.ScanCenter
+//            else -> ProviderType.GP // デフォルトの値
+//        }
+//    }
     fun doAddOrSave(title: String, description: String, providerType: String,
                     providerPhone:String,providerAddress:String, providerCity:String,
                     providerCounty:String, providerPostcode:String) {
@@ -43,6 +51,8 @@ class PlacemarkPresenter(private val view: PlacemarkView) {
         placemark.providerCity = providerCity
         placemark.providerCounty = providerCounty
         placemark.providerPostcode = providerPostcode
+//        val providerTypeText = binding.providerType.text.toString()
+//        val providerType = getProviderTypeFromText(providerTypeText)
         if (edit) {
             app.placemarks.update(placemark)
         } else {

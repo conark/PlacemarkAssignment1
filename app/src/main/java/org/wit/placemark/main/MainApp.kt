@@ -1,6 +1,8 @@
 package org.wit.placemark.main
 
+
 import android.app.Application
+import org.wit.placemark.R
 import org.wit.placemark.models.PlacemarkJSONStore
 import org.wit.placemark.models.UserJSONStore
 import org.wit.placemark.models.PlacemarkMemStore

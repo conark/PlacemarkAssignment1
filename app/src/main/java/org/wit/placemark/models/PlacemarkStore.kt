@@ -7,5 +7,6 @@ interface PlacemarkStore {
     fun update(placemark: PlacemarkModel)
     fun delete(placemark: PlacemarkModel)
     fun search(query: String): List<PlacemarkModel>
+    fun filter(function: (Any?) -> Boolean): List<PlacemarkModel>
 
 }

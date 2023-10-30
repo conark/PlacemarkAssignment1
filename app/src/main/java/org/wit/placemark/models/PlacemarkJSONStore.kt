@@ -34,7 +34,7 @@ class PlacemarkJSONStore(private val context: Context) : PlacemarkStore {
         return placemarks
     }
 
-    override fun findById(id:Long) : PlacemarkModel? {
+    override fun findById(id: Long): PlacemarkModel? {
         val foundPlacemark: PlacemarkModel? = placemarks.find { it.id == id }
         return foundPlacemark
     }
@@ -73,6 +73,7 @@ class PlacemarkJSONStore(private val context: Context) : PlacemarkStore {
     private fun deserialize() {
         val jsonString = read(context, JSON_FILE)
         placemarks = gsonBuilder.fromJson(jsonString, listType)
+
     }
 
     override fun delete(placemark: PlacemarkModel) {
@@ -86,10 +87,18 @@ class PlacemarkJSONStore(private val context: Context) : PlacemarkStore {
 
     override fun search(query: String): List<PlacemarkModel> {
         return placemarks.filter {
-            it.title.contains(query, ignoreCase = true) || it.description.contains(query, ignoreCase = true)
+            it.title.contains(query, ignoreCase = true) || it.description.contains(
+                query, ignoreCase = true) || it.providerType.contains(
+                query, ignoreCase = true)
         }
     }
+
+
+    override fun filter(function: (Any?) -> Boolean): List<PlacemarkModel> {
+        return placemarks.filter { function(it) }
+    }
 }
+
 
 class UriParser : JsonDeserializer<Uri>,JsonSerializer<Uri> {
     override fun deserialize(

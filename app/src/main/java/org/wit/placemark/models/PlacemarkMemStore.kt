@@ -53,4 +53,9 @@ class PlacemarkMemStore : PlacemarkStore {
             it.title.contains(query, ignoreCase = true) || it.description.contains(query, ignoreCase = true)
         }
     }
+
+    override fun filter(function: (Any?) -> Boolean): List<PlacemarkModel> {
+        // 与えられた条件（function）を使ってリスト内の要素をフィルタリングし、条件を満たす要素のリストを返す
+        return placemarks.filter { function(it) }
+    }
 }

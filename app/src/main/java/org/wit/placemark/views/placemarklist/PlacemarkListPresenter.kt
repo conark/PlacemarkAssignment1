@@ -7,7 +7,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import org.wit.placemark.views.placemark.PlacemarkView
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.PlacemarkModel
+//import org.wit.placemark.models.ProviderType
 import org.wit.placemark.views.map.PlacemarkMapView
+
+
+
 
 class PlacemarkListPresenter(val view: PlacemarkListView) {
 
@@ -15,6 +19,10 @@ class PlacemarkListPresenter(val view: PlacemarkListView) {
     private lateinit var refreshIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
     private var position: Int = 0
+
+
+
+
 
     init {
         app = view.application as MainApp
@@ -61,4 +69,10 @@ class PlacemarkListPresenter(val view: PlacemarkListView) {
             view.registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             {  }
     }
+
+//    fun filterPlacemarksByProviderType(providerType: ProviderType) {
+//        val placemarks = app.placemarks.filter {  providerType == providerType }
+//        view.showPlacemarks(placemarks)
+//    }
+
 }

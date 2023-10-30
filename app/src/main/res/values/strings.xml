@@ -16,4 +16,6 @@
     <string name="title_activity_placemark_maps">Map of All Medical Providers </string>
     <string name="menu_savePlacemark">Save</string>
     <string name="search_Placemark">Search</string>
+    <string name="provider_type">Provider Type</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

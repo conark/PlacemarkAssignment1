@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1030616501897",
+    "project_id": "placemark-kotlin-402108",
+    "storage_bucket": "placemark-kotlin-402108.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030616501897:android:13e7a91f9bc6215c6d8058",
+        "android_client_info": {
+          "package_name": "org.wit.placemark"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRUM71jv6A06Xo6NqKSML4kglGK-jnK9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
