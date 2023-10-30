@@ -12,6 +12,7 @@ import com.google.firebase.auth.auth
 import org.wit.placemark.R
 import org.wit.placemark.databinding.ActivitySignInBinding
 import org.wit.placemark.main.MainApp
+import org.wit.placemark.views.placemarklist.PlacemarkListView
 
 class SignInActivity : AppCompatActivity() {
 
@@ -38,7 +39,10 @@ class SignInActivity : AppCompatActivity() {
                         Toast.makeText(this, "Successfuly Sign In", Toast.LENGTH_SHORT).show()
                         //go to another activity
                         //start activity
-                        val intent = Intent(this, UserPageActivity::class.java)
+
+                    //    val intent = Intent(this, UserPageActivity::class.java)
+                        val intent = Intent(this, PlacemarkListView::class.java)
+
                         startActivity(intent)
                         //destroy activitUserPageActivity
                         finish()

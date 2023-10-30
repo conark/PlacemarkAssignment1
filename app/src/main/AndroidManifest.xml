@@ -36,6 +36,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".main.MainApp"
+            android:exported="false"
+            android:theme="@style/Theme.Placemark"/>
+        <activity
             android:name=".views.user.SignUpActivity"
             android:exported="false" />
         <activity
