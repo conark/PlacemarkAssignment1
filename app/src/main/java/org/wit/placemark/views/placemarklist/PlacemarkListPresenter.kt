@@ -9,8 +9,7 @@ import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.PlacemarkModel
 //import org.wit.placemark.models.ProviderType
 import org.wit.placemark.views.map.PlacemarkMapView
-
-
+import org.wit.placemark.views.user.UserPageActivity
 
 
 class PlacemarkListPresenter(val view: PlacemarkListView) {
@@ -46,6 +45,11 @@ class PlacemarkListPresenter(val view: PlacemarkListView) {
 
     fun doShowPlacemarksMap() {
         val launcherIntent = Intent(view, PlacemarkMapView::class.java)
+        mapIntentLauncher.launch(launcherIntent)
+    }
+
+    fun doShowUserPage() {
+        val launcherIntent = Intent(view, UserPageActivity::class.java)
         mapIntentLauncher.launch(launcherIntent)
     }
 

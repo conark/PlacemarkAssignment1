@@ -6,4 +6,5 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#009688</color>
     <color name="transparent">#2DFFFFFF</color>
+    <color name="actionBarColor">#009688</color>
 </resources>
