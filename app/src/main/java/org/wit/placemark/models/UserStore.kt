@@ -1,6 +1,6 @@
 package org.wit.placemark.models
 
-import UserModel
+import org.wit.placemark.models.UserModel
 
 
 interface UserStore {

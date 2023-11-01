@@ -1,3 +1,5 @@
+package org.wit.placemark.models
+
 import android.net.Uri
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -8,6 +10,6 @@ data class UserModel(var id: Long = 0,
                      var lastName: String = "",
                      var phoneNumber: Long =0,
                      var address: String = "",
-                     var iconImage: Uri = Uri.EMPTY,
-                     var provider : Boolean ,
+                     var provider : Boolean = false,
+                     var DOB:String = "",
                      var ppsNumber: String = "") : Parcelable

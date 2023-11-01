@@ -1,6 +1,6 @@
 package org.wit.placemark.models
 
-import UserModel
+import org.wit.placemark.models.UserModel
 import android.content.Context
 import android.net.Uri
 import com.google.gson.*
@@ -52,11 +52,12 @@ class UserJSONStore(private val context: Context) : UserStore {
         if (foundUser != null) {
             foundUser.firstName = user.firstName
             foundUser.lastName = user.lastName
-            foundUser.iconImage = user.iconImage
             foundUser.phoneNumber = user.phoneNumber
             foundUser.provider = user.provider
             foundUser.address = user.address
+            foundUser.DOB = user.DOB
             foundUser.ppsNumber = user.ppsNumber
+
 
         }
         serialize()

@@ -1,21 +1,30 @@
 package org.wit.placemark.views.user
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.MenuItem
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.squareup.picasso.Picasso
 import org.wit.placemark.R
 import org.wit.placemark.databinding.ActivityUserPageBinding
+import org.wit.placemark.models.PlacemarkModel
+import org.wit.placemark.models.UserModel
+import org.wit.placemark.views.placemark.PlacemarkPresenter
 
 class UserPageActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var presenter: UserPresenter
     private lateinit var binding: ActivityUserPageBinding
+    var user = UserModel ()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +33,37 @@ class UserPageActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = Firebase.auth
+
+        presenter = UserPresenter(this)
+
+        binding.btnUserinfoSave.setOnClickListener {
+
+            if (binding.firstName.text.toString().isEmpty()) {
+                 Snackbar.make(binding.root, R.string.enter_name, Snackbar.LENGTH_LONG)
+                  .show()
+            } else {
+                val phoneNumberText = binding.userPhoneNum.text.toString()
+                val phoneNumber = if (phoneNumberText.isNotEmpty()) phoneNumberText.toLong() else 0L
+
+                val dobText = binding.DOB.text.toString()
+
+
+                val provider = binding.provider.isChecked
+                  presenter.doAddOrSave(
+                  binding.firstName.text.toString(),
+                  binding.lastName.text.toString(),
+                  phoneNumber,
+                  binding.address.text.toString(),
+                  provider,
+                  dobText,
+                  binding.ppsNum.text.toString(),
+                  )
+            }
+        }
+
+
+
+
 
         binding.btnSignOut.setOnClickListener {
             //sign out account
@@ -52,27 +92,7 @@ class UserPageActivity : AppCompatActivity() {
                     }
             }
         }
-//        // Update Email doesn't work Firebase Setting?
-//        binding.btnUpdateEmail.setOnClickListener {
-//            val user = auth.currentUser
-//            val email = binding.etEmail.text.toString()
-//            if (checkEmailField()) {
-//                user?.updateEmail(email)?.addOnCompleteListener {
-//                    // if success
-//                    if (it.isSuccessful) {
-//                        Toast.makeText(
-//                            this,
-//                            "Update Email Successfully",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    } else {
-//                        Log.e("error:", it.exception.toString())
-//                        Toast.makeText(this, "Failed Email Update", Toast.LENGTH_SHORT)
-//                            .show()
-//                    }
-//                }
-//            }
-//        }
+
         binding.btnDeleteAccount.setOnClickListener {
             val user = Firebase.auth.currentUser
             user?.delete()?.addOnCompleteListener {
@@ -113,16 +133,15 @@ class UserPageActivity : AppCompatActivity() {
         return true
     }
 
-//    private fun checkEmailField(): Boolean {
-//        val email = binding.etEmail.text.toString()
-//        if (binding.etEmail.text.toString() == "") {
-//            binding.textInputLayoutEmail.error = "This is required field"
-//            return false
-//        }
-//        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-//            binding.textInputLayoutEmail.error = "Check Email format "
-//            return false
-//        }
-//        return true
-//    }
+    fun showUser(user: UserModel) {
+
+            binding.firstName.setText(user.firstName)
+            binding.lastName.setText(user.lastName)
+            binding.userPhoneNum.setText(user.phoneNumber.toString())
+            binding.address.setText(user.address)
+            binding.provider.isChecked = user.provider
+            binding.DOB.setText(user.DOB)
+            binding.ppsNum.setText(user.ppsNumber)
+
+    }
 }

@@ -6,6 +6,7 @@
     <string name="menu_addPlacemark">Add</string>
     <string name="menu_cancelPlacemark">Cancel</string>
     <string name="enter_placemark_title"> Please enter a provider name </string>
+    <string name="enter_name"> Please enter your name </string>
     <string name="save_placemark"> Save Place </string>
     <string name="button_addImage"> Add Image </string>
     <string name="select_placemark_image">Select image</string>
@@ -18,4 +19,9 @@
     <string name="search_Placemark">Search</string>
     <string name="provider_type">Provider Type</string>
     <string name="sign_up">Sign Up</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="address">address</string>
+
 </resources>
