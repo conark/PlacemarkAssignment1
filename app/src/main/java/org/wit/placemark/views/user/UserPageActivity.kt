@@ -1,5 +1,6 @@
 package org.wit.placemark.views.user
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.view.MenuItem
+import android.widget.DatePicker
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
@@ -15,11 +17,12 @@ import com.google.firebase.auth.auth
 import com.squareup.picasso.Picasso
 import org.wit.placemark.R
 import org.wit.placemark.databinding.ActivityUserPageBinding
+import org.wit.placemark.helpers.DatePickerDialogFragment
 import org.wit.placemark.models.PlacemarkModel
 import org.wit.placemark.models.UserModel
 import org.wit.placemark.views.placemark.PlacemarkPresenter
 
-class UserPageActivity : AppCompatActivity() {
+class UserPageActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener  {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var presenter: UserPresenter
@@ -36,6 +39,15 @@ class UserPageActivity : AppCompatActivity() {
 
         presenter = UserPresenter(this)
 
+
+        binding.DOB.setOnClickListener {
+                val datePicker = DatePickerDialogFragment()
+                datePicker.show(supportFragmentManager, "datePicker")
+
+        }
+
+
+
         binding.btnUserinfoSave.setOnClickListener {
 
             if (binding.firstName.text.toString().isEmpty()) {
@@ -47,21 +59,19 @@ class UserPageActivity : AppCompatActivity() {
 
                 val dobText = binding.DOB.text.toString()
 
-
                 val provider = binding.provider.isChecked
-                  presenter.doAddOrSave(
-                  binding.firstName.text.toString(),
-                  binding.lastName.text.toString(),
-                  phoneNumber,
-                  binding.address.text.toString(),
-                  provider,
-                  dobText,
-                  binding.ppsNum.text.toString(),
-                  )
+
+                presenter.doAddOrSave(
+                    binding.firstName.text.toString(),
+                   binding.lastName.text.toString(),
+                   phoneNumber,
+                   binding.address.text.toString(),
+                   provider,
+                   dobText,
+                   binding.ppsNum.text.toString(),
+                    )
             }
         }
-
-
 
 
 
@@ -113,6 +123,13 @@ class UserPageActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        val selectedDate = "$year-${month + 1}-$dayOfMonth"
+        binding.DOB.setText(selectedDate)
     }
 
 

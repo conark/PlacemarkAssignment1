@@ -18,14 +18,14 @@ class UserPresenter (private val view: UserPageActivity) {
     var edit = false;
 
 
-
     init {
-        if (view.intent.hasExtra("User_edit")) {
+        if (view.intent.hasExtra("user_edit")) {
             edit = true
             user = view.intent.extras?.getParcelable("user_edit")!!
             view.showUser (user)
         }
     }
+
 
     fun doAddOrSave(firstName: String, lastName: String, phoneNumber: Long,
                     address:String, provider: Boolean,
@@ -43,12 +43,12 @@ class UserPresenter (private val view: UserPageActivity) {
         } else {
             app.users.createUser(user)
         }
-        view.setResult(Activity.RESULT_OK)
+        view.setResult(RESULT_OK)
         view.finish()
     }
 
 
-    fun cachePlacemark (firstName: String, lastName: String, phoneNumber: Long,
+    fun cacheUser (firstName: String, lastName: String, phoneNumber: Long,
                         address:String, provider: Boolean,
                         DOB:String, ppsNumber:String) {
         user.firstName = firstName
