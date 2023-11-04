@@ -35,10 +35,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".main.MainApp"
-            android:exported="false"
-            android:theme="@style/Theme.Placemark"/>
+<!--        <activity-->
+<!--            android:name=".main.MainApp"-->
+<!--            android:exported="false"-->
+<!--            android:theme="@style/Theme.Placemark"/>-->
         <activity
             android:name=".views.user.SignUpActivity"
             android:exported="false" />

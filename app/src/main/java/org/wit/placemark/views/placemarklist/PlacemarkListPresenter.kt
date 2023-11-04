@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import org.wit.placemark.views.placemark.PlacemarkView
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.PlacemarkModel
+import org.wit.placemark.models.UserModel
 //import org.wit.placemark.models.ProviderType
 import org.wit.placemark.views.map.PlacemarkMapView
 import org.wit.placemark.views.user.UserPageActivity
@@ -50,7 +51,9 @@ class PlacemarkListPresenter(val view: PlacemarkListView) {
 
     fun doShowUserPage() {
         val launcherIntent = Intent(view, UserPageActivity::class.java)
-        mapIntentLauncher.launch(launcherIntent)
+//        launcherIntent.putExtra("user_edit", user)
+//        position = pos
+        refreshIntentLauncher.launch(launcherIntent)
     }
 
     fun searchPlacemarks(query: String) {

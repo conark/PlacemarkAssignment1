@@ -2,25 +2,22 @@ package org.wit.placemark.views.user
 
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.util.Patterns
-import android.view.MenuItem
 import android.widget.DatePicker
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import com.squareup.picasso.Picasso
-import org.wit.placemark.R
 import org.wit.placemark.databinding.ActivityUserPageBinding
 import org.wit.placemark.helpers.DatePickerDialogFragment
-import org.wit.placemark.models.PlacemarkModel
+import org.wit.placemark.models.UserJSONStore
 import org.wit.placemark.models.UserModel
-import org.wit.placemark.views.placemark.PlacemarkPresenter
+
+
+
 
 class UserPageActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener  {
 
@@ -36,8 +33,23 @@ class UserPageActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
         setContentView(binding.root)
 
         auth = Firebase.auth
-
+        val userStore = UserJSONStore(applicationContext)
         presenter = UserPresenter(this)
+
+
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+
+            // ユーザー情報を検索
+            val foundUser = userStore.findUserById(userId)
+
+            if (foundUser != null) {
+                showUser(foundUser)
+            } else {
+                Log.e("User Not Found", "User with ID $userId not found")
+            }
+        }
 
 
         binding.DOB.setOnClickListener {
@@ -49,28 +61,49 @@ class UserPageActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
 
 
         binding.btnUserinfoSave.setOnClickListener {
-
-            if (binding.firstName.text.toString().isEmpty()) {
-                 Snackbar.make(binding.root, R.string.enter_name, Snackbar.LENGTH_LONG)
-                  .show()
-            } else {
+            val user = auth.currentUser
+            if (user != null) {
                 val phoneNumberText = binding.userPhoneNum.text.toString()
                 val phoneNumber = if (phoneNumberText.isNotEmpty()) phoneNumberText.toLong() else 0L
-
+                val id = currentUser?.uid
                 val dobText = binding.DOB.text.toString()
 
                 val provider = binding.provider.isChecked
 
-                presenter.doAddOrSave(
-                    binding.firstName.text.toString(),
-                   binding.lastName.text.toString(),
-                   phoneNumber,
-                   binding.address.text.toString(),
-                   provider,
-                   dobText,
-                   binding.ppsNum.text.toString(),
+                if (id != null) {
+                    presenter.doAddOrSave(
+                        id,
+                        binding.firstName.text.toString(),
+                        binding.lastName.text.toString(),
+                        phoneNumber,
+                        binding.address.text.toString(),
+                        provider,
+                        dobText,
+                        binding.ppsNum.text.toString(),
                     )
+                }
             }
+//            if (binding.firstName.text.toString().isEmpty()) {
+//                 Snackbar.make(binding.root, R.string.enter_name, Snackbar.LENGTH_LONG)
+//                  .show()
+//            } else {
+//                val phoneNumberText = binding.userPhoneNum.text.toString()
+//                val phoneNumber = if (phoneNumberText.isNotEmpty()) phoneNumberText.toLong() else 0L
+//
+//                val dobText = binding.DOB.text.toString()
+//
+//                val provider = binding.provider.isChecked
+//
+//                presenter.doAddOrSave(
+//                    binding.firstName.text.toString(),
+//                   binding.lastName.text.toString(),
+//                   phoneNumber,
+//                   binding.address.text.toString(),
+//                   provider,
+//                   dobText,
+//                   binding.ppsNum.text.toString(),
+//                    )
+//            }
         }
 
 

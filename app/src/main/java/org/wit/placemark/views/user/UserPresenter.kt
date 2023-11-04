@@ -27,9 +27,10 @@ class UserPresenter (private val view: UserPageActivity) {
     }
 
 
-    fun doAddOrSave(firstName: String, lastName: String, phoneNumber: Long,
+    fun doAddOrSave(id:String,firstName: String, lastName: String, phoneNumber: Long,
                     address:String, provider: Boolean,
                     DOB:String, ppsNumber:String) {
+        user.id= id
         user.firstName = firstName
         user.lastName = lastName
         user.phoneNumber = phoneNumber
@@ -48,9 +49,10 @@ class UserPresenter (private val view: UserPageActivity) {
     }
 
 
-    fun cacheUser (firstName: String, lastName: String, phoneNumber: Long,
+    fun cacheUser (id:String,firstName: String, lastName: String, phoneNumber: Long,
                         address:String, provider: Boolean,
                         DOB:String, ppsNumber:String) {
+        user.id= id
         user.firstName = firstName
         user.lastName = lastName
         user.phoneNumber = phoneNumber
@@ -60,3 +62,4 @@ class UserPresenter (private val view: UserPageActivity) {
         user.ppsNumber = ppsNumber
     }
 }
+

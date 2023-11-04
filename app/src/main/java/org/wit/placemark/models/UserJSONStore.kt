@@ -16,9 +16,9 @@ val gsonUserBuilder: Gson = GsonBuilder().setPrettyPrinting()
     .create()
 val userListType: Type = object : TypeToken<ArrayList<UserModel>>() {}.type
 
-fun generateUserId(): Long {
-    return Random().nextLong()
-}
+//fun generateUserId(): Long {
+//    return Random().nextLong()
+//}
 
 class UserJSONStore(private val context: Context) : UserStore {
 
@@ -35,13 +35,17 @@ class UserJSONStore(private val context: Context) : UserStore {
         return users
     }
 
-    override fun findUserById(id:Long) : UserModel? {
-        val foundUser: UserModel? = users.find { it.id == id }
-        return foundUser
-    }
+//    override fun findUserById(id:String) : UserModel? {
+//        val foundUser: UserModel? = users.find { it.id == id }
+//        return foundUser
+//    }
+    override fun findUserById(id: String): UserModel? {
+        val user = users.find { it.id == id }
+        return user
+}
 
     override fun createUser(user: UserModel) {
-        user.id = generateUserId()
+//        user.id = generateUserId()
         users.add(user)
         serialize()
     }
