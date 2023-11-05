@@ -41,7 +41,6 @@ class UserPageActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
         if (currentUser != null) {
             val userId = currentUser.uid
 
-            // ユーザー情報を検索
             val foundUser = userStore.findUserById(userId)
 
             if (foundUser != null) {
@@ -60,51 +59,75 @@ class UserPageActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
 
 
 
+//        binding.btnUserinfoSave.setOnClickListener {
+//            val currentUser = auth.currentUser
+//            if (currentUser != null) {
+//                val phoneNumberText = binding.userPhoneNum.text.toString()
+//                val phoneNumber = if (phoneNumberText.isNotEmpty()) phoneNumberText.toLong() else 0L
+//                val id = currentUser?.uid
+//                val dobText = binding.DOB.text.toString()
+//
+//                val provider = binding.provider.isChecked
+//
+//                if (id != null) {
+//                    presenter.doAddOrSave(
+//                        id,
+//                        binding.firstName.text.toString(),
+//                        binding.lastName.text.toString(),
+//                        phoneNumber,
+//                        binding.address.text.toString(),
+//                        provider,
+//                        dobText,
+//                        binding.ppsNum.text.toString(),
+//                    )
+//                }
+//            }
+//
+//        }
+
         binding.btnUserinfoSave.setOnClickListener {
-            val user = auth.currentUser
-            if (user != null) {
+            val currentUser = auth.currentUser
+            if (currentUser != null) {
                 val phoneNumberText = binding.userPhoneNum.text.toString()
                 val phoneNumber = if (phoneNumberText.isNotEmpty()) phoneNumberText.toLong() else 0L
-                val id = currentUser?.uid
+                val id = currentUser.uid
                 val dobText = binding.DOB.text.toString()
 
                 val provider = binding.provider.isChecked
 
                 if (id != null) {
-                    presenter.doAddOrSave(
-                        id,
-                        binding.firstName.text.toString(),
-                        binding.lastName.text.toString(),
-                        phoneNumber,
-                        binding.address.text.toString(),
-                        provider,
-                        dobText,
-                        binding.ppsNum.text.toString(),
-                    )
+                    // Check if exist
+                    val foundUser = userStore.findUserById(id)
+
+                    if (foundUser != null) {
+                        // existing user update
+                        presenter.doUpdateUser(
+                            id,
+                            binding.firstName.text.toString(),
+                            binding.lastName.text.toString(),
+                            phoneNumber,
+                            binding.address.text.toString(),
+                            provider,
+                            dobText,
+                            binding.ppsNum.text.toString()
+                        )
+                    } else {
+                        // create new user
+                        presenter.doAddUser(
+                            id,
+                            binding.firstName.text.toString(),
+                            binding.lastName.text.toString(),
+                            phoneNumber,
+                            binding.address.text.toString(),
+                            provider,
+                            dobText,
+                            binding.ppsNum.text.toString()
+                        )
+                    }
                 }
             }
-//            if (binding.firstName.text.toString().isEmpty()) {
-//                 Snackbar.make(binding.root, R.string.enter_name, Snackbar.LENGTH_LONG)
-//                  .show()
-//            } else {
-//                val phoneNumberText = binding.userPhoneNum.text.toString()
-//                val phoneNumber = if (phoneNumberText.isNotEmpty()) phoneNumberText.toLong() else 0L
-//
-//                val dobText = binding.DOB.text.toString()
-//
-//                val provider = binding.provider.isChecked
-//
-//                presenter.doAddOrSave(
-//                    binding.firstName.text.toString(),
-//                   binding.lastName.text.toString(),
-//                   phoneNumber,
-//                   binding.address.text.toString(),
-//                   provider,
-//                   dobText,
-//                   binding.ppsNum.text.toString(),
-//                    )
-//            }
         }
+
 
 
 
